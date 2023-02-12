@@ -1,0 +1,26 @@
+{
+  "name": "wave_forecast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godidev/wave_forecast.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/godidev/wave_forecast/issues"
+  },
+  "homepage": "https://github.com/godidev/wave_forecast#readme",
+  "devDependencies": {
+    "playwright": "^1.30.0",
+    "standard": "^17.0.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
