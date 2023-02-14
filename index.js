@@ -17,8 +17,8 @@ async function getDataFrom (query, browser, { url, selectors }) {
   await page.waitForLoadState('networkidle')
 
   const allData = { [query]: [] }
-  let results = {}
-  results = await page.evaluate((selectors) => {
+
+  const results = await page.evaluate((selectors) => {
     let resultados = {}
     selectors.forEach(type => {
       resultados = { ...resultados, [type[0]]: [] }
