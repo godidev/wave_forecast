@@ -5,7 +5,7 @@ const spots = [{
 },
 {
   spot: 'cotillo',
-  windguru: 'https://www.windguru.cz/46997',
+  windguru: 'https://www.windguru.cz/49334',
   surfForecast: 'https://es.surf-forecast.com/breaks/Cotillo/forecasts/latest'
 }]
 
@@ -18,14 +18,16 @@ function setData () {
         windguru: {
           url: windguru,
           selectors: [
-            ['waveHeight', '#tabid_0_0_HTSGW td'],
-            ['period', '#tabid_0_0_PERPW td'],
-            ['tides', '#tabid_0_0_tides text']]
+            ['waveHeight', '#tabid_0_0_HTSGW td', 0, 6],
+            ['period', '#tabid_0_0_PERPW td', 0, 6],
+            ['tides', '#tabid_0_0_tides text', 0, 3],
+            ['time', 'tr[data-row-time="time"] td', 0, 6]
+          ]
         },
         surfForecast: {
           url: surfForecast,
           selectors: [
-            ['energy', 'tr[data-row-name="energy"] td strong']
+            ['energy', 'tr[data-row-name="energy"] td strong', 1, 7]
           ]
         }
       }
