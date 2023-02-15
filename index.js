@@ -3,6 +3,7 @@ const { saveToDb, loadPageAndWait, evaluateSelectors } = require('./helper')
 const { webPages } = require('./data')
 
 async function getDataFrom (browser, webPages) {
+  console.log({ webPages })
   let allData = {}
   for (const web in webPages) {
     allData = { ...allData, [web]: [] }
@@ -19,8 +20,10 @@ async function getDataFrom (browser, webPages) {
 
 ;(async () => {
   const browser = await chromium.launch()
-
-  const forecast = await getDataFrom(browser, webPages)
+  let forecast = {}
+  for (const spot in webPages) {
+    forecast = { ...forecast, [spot]: await getDataFrom(browser, webPages[spot]) }
+  }
 
   saveToDb('./db/forecast.json', forecast)
   await browser.close()
