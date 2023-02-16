@@ -1,17 +1,41 @@
-const webPages = {
-  windguru: {
-    url: 'https://www.windguru.cz/48690',
-    selectors: [
-      ['waveHeight', '#tabid_0_0_HTSGW td'],
-      ['period', '#tabid_0_0_PERPW td'],
-      ['tides', '#tabid_0_0_tides text']]
-  },
-  surfForecast: {
-    url: 'https://es.surf-forecast.com/breaks/Sopelana/forecasts/latest',
-    selectors: [
-      ['energy', 'tr[data-row-name="energy"] td strong']
-    ]
-  }
+const spots = [{
+  spot: 'sopela',
+  windguru: 'https://www.windguru.cz/48690',
+  surfForecast: 'https://es.surf-forecast.com/breaks/Sopelana/forecasts/latest'
+},
+{
+  spot: 'cotillo',
+  windguru: 'https://www.windguru.cz/49334',
+  surfForecast: 'https://es.surf-forecast.com/breaks/Cotillo/forecasts/latest'
+}]
+
+function setData () {
+  let res = {}
+  spots.forEach(({ spot, windguru, surfForecast }) => {
+    res = {
+      ...res,
+      [spot]: {
+        windguru: {
+          url: windguru,
+          selectors: [
+            ['waveHeight', '#tabid_0_0_HTSGW td', 0, 6],
+            ['period', '#tabid_0_0_PERPW td', 0, 6],
+            ['tides', '#tabid_0_0_tides text', 0, 3],
+            ['time', 'tr[data-row-time="time"] td', 0, 6]
+          ]
+        },
+        surfForecast: {
+          url: surfForecast,
+          selectors: [
+            ['energy', 'tr[data-row-name="energy"] td strong', 1, 7]
+          ]
+        }
+      }
+    }
+  })
+  return res
 }
+
+const webPages = setData()
 
 module.exports = { webPages }

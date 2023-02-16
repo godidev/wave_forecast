@@ -1,19 +1,13 @@
 const { writeFile } = require('fs')
 
-function trimResults (longStr) {
-  return longStr
-    .split('\t')
-    .slice(0, 5)
-}
-
 async function evaluateSelectors (selectors, page) {
   return await page.evaluate((selectors) => {
     let resultados = {}
-    selectors.forEach(type => {
-      resultados = { ...resultados, [type[0]]: [] }
-      const row = [...document.querySelectorAll(type[1])].slice(0, 6)
+    selectors.forEach(([type, selector, start, end]) => {
+      resultados = { ...resultados, [type]: {} }
+      const row = [...document.querySelectorAll(selector)].slice(start, end)
       row.forEach((item) => {
-        resultados[type[0]].push(item.textContent)
+        resultados[type].push(item.textContent)
       })
     })
     return resultados
@@ -35,4 +29,4 @@ async function loadPageAndWait (browser, url) {
   return page
 }
 
-module.exports = { trimResults, saveToDb, loadPageAndWait, evaluateSelectors }
+module.exports = { saveToDb, loadPageAndWait, evaluateSelectors }
