@@ -20,7 +20,7 @@ async function getDataFrom (browser, webPages) {
   const browser = await chromium.launch()
   const forecast = { forecast: [] }
   for (const spot in webPages) {
-    forecast.forecast.push({ [spot]: await getDataFrom(browser, webPages[spot]) })
+    forecast.forecast.push({ name: spot, webpages: await getDataFrom(browser, webPages[spot]) })
   }
 
   saveToDb('./db/forecast.json', forecast)
