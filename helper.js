@@ -4,9 +4,11 @@ async function evaluateSelectors (selectors, page) {
   return await page.evaluate((selectors) => {
     let resultados = {}
     selectors.forEach(([type, selector, start, end]) => {
-      resultados = { ...resultados, [type]: {} }
+      console.log({ type })
+      resultados = { ...resultados, [type]: [] }
       const row = [...document.querySelectorAll(selector)].slice(start, end)
       row.forEach((item) => {
+        console.log({ resultados })
         resultados[type].push(item.textContent)
       })
     })
