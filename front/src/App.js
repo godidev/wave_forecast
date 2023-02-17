@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+
+function getNumbers (times) {
+  const res = times.map(time => {
+    const sum = time.includes('PM') ? 12 : 0
+    const finalTime = Number(time.slice(0, -3)) + sum
+    return finalTime === 24 ? 0 : finalTime
+  })
+  return res
+}
+
 function App() {
   const [forecast, setForecast] = useState([])
   useEffect(() => {
@@ -7,11 +17,11 @@ function App() {
     .then(({data}) => setForecast(data))
   }, [])
 
-  console.log({forecast})
   return (
     <div className="App">
       {forecast.map(({name, webpages}) => {
         const {windguru, surfForecast} = webpages
+        console.log(getNumbers(surfForecast.time))
         return (
           <div>
             <h3>{name}</h3>
@@ -21,7 +31,7 @@ function App() {
                   <th colSpan={7}>{name}</th></tr>
                 <tr>
                   <th>Hora</th>
-                  {surfForecast.time.map(wave => <td>{wave}</td>)}
+                  {surfForecast.time.map(time => <td>{time}</td>)}
                 </tr>
               </thead>
               <tbody>
@@ -31,11 +41,11 @@ function App() {
                 </tr>
                 <tr>
                 <th>Periodo</th>
-                  {windguru.period.map(wave => <td>{wave}s</td>)}
+                  {windguru.period.map(period => <td>{period}s</td>)}
                 </tr>
                 <tr>
                 <th>Energía</th>
-                  {surfForecast.energy.map(wave => <td>{wave}</td>)}
+                  {surfForecast.energy.map(energy => <td>{energy}</td>)}
                 </tr>
               </tbody>
             </table>
