@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Row from './components/Row'
 
 function getNumbers(times) {
 	const res = times.map(time => {
-		const sum = time.includes('PM') ? 12 : 0
+		let sum = 0
+		if (time !== '12\u2009PM') {
+			sum = time.includes('PM') ? 12 : 0
+		}
 		const finalTime = Number(time.slice(0, -3)) + sum
 		return finalTime === 24 ? 0 : finalTime
 	})
@@ -22,7 +26,25 @@ function App() {
 		<div className='App'>
 			{forecast.map(({ name, webpages }, index) => {
 				const { windguru, surfForecast } = webpages
-				console.log(getNumbers(surfForecast.time))
+
+				const horas = getNumbers(surfForecast.time)
+
+				let temp = []
+				const dias = []
+				horas.forEach((hora, index) => {
+					temp.push(hora)
+					if (hora >= 21 || index === horas.length - 1) {
+						dias.push(temp)
+						temp = []
+					}
+				})
+
+				const fecha = new Date()
+				const diaSemana = fecha.toLocaleString('es-sp', {
+					weekday: 'long',
+				})
+				const diaMes = fecha.getDate()
+
 				return (
 					<div key={index}>
 						<h3>{name}</h3>
@@ -32,30 +54,41 @@ function App() {
 									<th colSpan={7}>{name}</th>
 								</tr>
 								<tr>
-									<th>Hora</th>
-									{surfForecast.time.map(time => (
-										<td key={time}>{time}</td>
+									<th>Dia</th>
+									{dias.map(dia => (
+										<td
+											colSpan={dia.length}
+											key={dia.length}>
+											{`${diaSemana.slice(
+												0,
+												3
+											)}, ${diaMes} `}
+										</td>
 									))}
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th>Altura</th>
-									{windguru.waveHeight.map(wave => (
-										<td key={wave}>{wave}m</td>
+									{windguru.waveHeight.map((wave, index) => (
+										<td key={wave + index}>{wave}m</td>
 									))}
 								</tr>
 								<tr>
 									<th>Periodo</th>
-									{windguru.period.map(period => (
-										<td key={period}>{period}s</td>
+									{windguru.period.map((period, index) => (
+										<td key={period + index}>{period}s</td>
 									))}
 								</tr>
 								<tr>
 									<th>Energía</th>
-									{surfForecast.energy.map(energy => (
-										<td key={energy}>{energy}</td>
-									))}
+									{surfForecast.energy.map(
+										(energy, index) => (
+											<td key={energy + index}>
+												{energy}
+											</td>
+										)
+									)}
 								</tr>
 							</tbody>
 						</table>
