@@ -3,7 +3,6 @@ const { saveToDb, loadPageAndWait, evaluateSelectors } = require('./helper')
 const { webPages } = require('./data')
 
 async function getDataFrom(browser, webPages) {
-	console.log({ webPages })
 	const allData = {}
 	for (const web in webPages) {
 		const { url, selectors } = webPages[web]
