@@ -1,30 +1,37 @@
 {
-  "name": "wave_forecast",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "server": "json-server --watch .\\db\\forecast.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/godidev/wave_forecast.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/godidev/wave_forecast/issues"
-  },
-  "homepage": "https://github.com/godidev/wave_forecast#readme",
-  "devDependencies": {
-    "playwright": "^1.30.0",
-    "standard": "^17.0.0"
-  },
-  "eslintConfig": {
-    "extends": "standard"
-  },
-  "dependencies": {
-    "json-server": "^0.17.1"
-  }
+	"name": "wave_forecast",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"workspaces": [
+		"api",
+		"front"
+	],
+	"devDependencies": {
+		"eslint": "^8.34.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-n": "^15.6.1",
+		"eslint-plugin-promise": "^6.1.1",
+		"eslint-plugin-react": "^7.32.2",
+		"prettier": "2.8.4"
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix .",
+		"format": "prettier . --write",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/godidev/wave_forecast.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/godidev/wave_forecast/issues"
+	},
+	"homepage": "https://github.com/godidev/wave_forecast#readme"
 }
