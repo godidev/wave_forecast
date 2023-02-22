@@ -1,3 +1,5 @@
+const { default: axios } = require('axios')
+const { info } = require('console')
 const { writeFile } = require('fs')
 
 async function evaluateSelectors(selectors, page) {
@@ -19,7 +21,7 @@ async function evaluateSelectors(selectors, page) {
 
 function saveToDb(file, data) {
 	writeFile(file, JSON.stringify(data, null, 2), err => {
-		err ? console.log(err) : console.log('File written successfully\n')
+		err ? info(err) : info('File written successfully\n')
 	})
 }
 
@@ -30,4 +32,9 @@ async function loadPageAndWait(browser, url) {
 	return page
 }
 
-module.exports = { saveToDb, loadPageAndWait, evaluateSelectors }
+async function getSpots() {
+	const { data } = await axios.get('http://localhost:3001/api/spots/')
+	return data
+}
+
+module.exports = { saveToDb, loadPageAndWait, evaluateSelectors, getSpots }
