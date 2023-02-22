@@ -33,5 +33,8 @@
 	"bugs": {
 		"url": "https://github.com/godidev/wave_forecast/issues"
 	},
-	"homepage": "https://github.com/godidev/wave_forecast#readme"
+	"homepage": "https://github.com/godidev/wave_forecast#readme",
+	"dependencies": {
+		"axios": "^1.3.3"
+	}
 }
