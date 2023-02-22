@@ -1,6 +1,7 @@
 const { chromium } = require('playwright')
-const { saveToDb, loadPageAndWait, evaluateSelectors } = require('./helper')
+const { loadPageAndWait, evaluateSelectors } = require('./helper')
 const { getData } = require('./data')
+const { default: axios } = require('axios')
 
 async function getDataFrom(browser, webPages) {
 	const allData = {}
@@ -16,13 +17,13 @@ async function getDataFrom(browser, webPages) {
 ;(async () => {
 	const browser = await chromium.launch()
 	const webPages = await getData()
-	const forecast = { forecast: [] }
+	const forecast = []
 	for (const spot in webPages) {
-		forecast.forecast.push({
+		forecast.push({
 			name: spot,
 			webpages: await getDataFrom(browser, webPages[spot]),
 		})
 	}
-	saveToDb('./db/forecast.json', forecast)
+	axios.post('http://localhost:3001/api/forecast', forecast)
 	await browser.close()
 })()
