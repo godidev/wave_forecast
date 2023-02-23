@@ -37,6 +37,12 @@ describe('getting spots from server', () => {
 		const { body } = await api.get('/api/spots')
 		expect(body).toHaveLength(initialSpots.length)
 	})
+
+	test('response containes correct data', async () => {
+		const { body } = await api.get('/api/spots')
+		const spot = body.map(res => res.spot)
+		expect(spot).toContain(['aaaa'])
+	})
 })
 
 afterAll(async () => {
