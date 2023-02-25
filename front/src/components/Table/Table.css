@@ -1,0 +1,36 @@
+.table-content {
+	min-width: 500px;
+	background-color: aliceblue;
+	font-size: 0.9em;
+	border-collapse: collapse;
+	border-radius: 15px;
+}
+
+.table-header tr {
+	background-color: aquamarine;
+	font-weight: bold;
+}
+
+.table-header th {
+	text-align: left;
+}
+
+tr {
+	border-bottom: 1px solid;
+}
+
+td,
+th {
+	padding: 5px 10px;
+}
+
+.table-content tr:first-child th:first-child {
+	border-top-left-radius: 10px;
+}
+.table-content tr:first-child td:last-child {
+	border-top-right-radius: 10px;
+}
+
+.table-body tr:last-of-type {
+	border-bottom: 2px solid #000987;
+}
