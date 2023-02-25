@@ -26,6 +26,7 @@ function App() {
 									<th colSpan={7}>{name}</th>
 								</tr>
 								<DaysRow hours={surfForecast.time} />
+								<Row data={surfForecast.time} text='Hora' />
 							</thead>
 							<tbody>
 								<Row
