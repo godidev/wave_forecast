@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "cross-env NODE_ENV=development nodemon index.js",
+		"dev": "json-server --watch ./db/forecast.json -p3001",
 		"start": "cross-env NODE_ENV=production node index.js",
 		"test": "cross-env NODE_ENV=test jest --verbose --runInBand"
 	},
