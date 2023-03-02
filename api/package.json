@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "json-server --watch ./db/forecast.json -p3001",
 		"start": "cross-env NODE_ENV=production node index.js",
-		"test": "cross-env NODE_ENV=test jest --verbose --runInBand"
+		"test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+		"build:ui": "rmdir /Q /S build && cd ../front && npm run build && xcopy build ..\\api\\build /I /S -Y"
 	},
 	"author": "",
 	"license": "ISC",
