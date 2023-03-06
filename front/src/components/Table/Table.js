@@ -5,7 +5,10 @@ import './Table.css'
 export default function Table({ forecast }) {
 	console.log({ forecast })
 	console.log('tipo:', typeof forecast)
-	return forecast.forecast.map(({ webpages }, index) => {
+	const fore = forecast.forecast
+	console.log({ fore })
+	console.log('tipo:', typeof fore)
+	return fore.map(({ webpages }, index) => {
 		const { windguru, surfForecast } = webpages
 
 		return (
