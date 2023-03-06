@@ -3,8 +3,6 @@ import DaysRow from './DaysRow'
 import './Table.css'
 
 export default function Table({ forecast }) {
-	console.log({ forecast })
-	console.log('tipo:', typeof forecast)
 	return forecast.map(({ webpages }, index) => {
 		const { windguru, surfForecast } = webpages
 

@@ -8,7 +8,7 @@ function App() {
 
 	useEffect(() => {
 		axios.get('/forecast').then(({ data }) => {
-			setForecast(data)
+			setForecast(data.forecast)
 		})
 	}, [])
 
