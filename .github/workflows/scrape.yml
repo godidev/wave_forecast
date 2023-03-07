@@ -1,0 +1,23 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js 18.12
+              uses: actions/setup-node@v3
+              with:
+                  version: 18.12
+            - name: Build
+              run: npm ci
+            - name: Scrape
+              run: npm run scrape
+            - name: Push
+              run: |
+                  git config user.name "Gorka Diez"
+                  git commit -a -m "Update database"
+                  git push origin main
