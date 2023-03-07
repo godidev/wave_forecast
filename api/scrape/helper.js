@@ -6,7 +6,7 @@ async function evaluateSelectors(selectors, page) {
 	return await page.evaluate(selectors => {
 		let resultados = {}
 		selectors.forEach(([type, selector, start, end]) => {
-			resultados = { ...resultados, name: type, [type]: [] }
+			resultados = { ...resultados, [type]: [] }
 			const row = [...document.querySelectorAll(selector)].slice(
 				start,
 				end

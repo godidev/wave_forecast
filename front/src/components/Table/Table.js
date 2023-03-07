@@ -3,7 +3,7 @@ import DaysRow from './DaysRow'
 import './Table.css'
 
 export default function Table({ forecast }) {
-	return forecast.map(({ name, webpages }, index) => {
+	return forecast.map(({ webpages }, index) => {
 		const { windguru, surfForecast } = webpages
 
 		return (

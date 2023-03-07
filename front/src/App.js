@@ -7,8 +7,8 @@ function App() {
 	const [forecast, setForecast] = useState([])
 
 	useEffect(() => {
-		axios.get('http://localhost:3001/api/forecast').then(({ data }) => {
-			setForecast(data[0].forecast)
+		axios.get('/forecast').then(({ data }) => {
+			setForecast(data.forecast)
 		})
 	}, [])
 
