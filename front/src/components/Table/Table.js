@@ -6,7 +6,10 @@ export default function Table({ forecast }) {
 	console.log('forecast', forecast)
 	console.log('tipo:', typeof forecast)
 
-	if (Array.isArray(forecast)) {
+	console.log('forecast', forecast.forecast)
+	console.log('tipo:', typeof forecast.forecast)
+
+	if (Array.isArray(forecast.forecast)) {
 		return forecast.map(({ webpages }, index) => {
 			const { windguru, surfForecast } = webpages
 
