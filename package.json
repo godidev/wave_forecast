@@ -21,7 +21,8 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
 		"format": "prettier . --write",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"scrape": "cd api && node ./scrape/scrape.js"
 	},
 	"repository": {
 		"type": "git",
