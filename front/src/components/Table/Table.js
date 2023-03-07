@@ -6,10 +6,8 @@ export default function Table({ forecast }) {
 	console.log('forecast', forecast)
 	console.log('tipo:', typeof forecast)
 
-	let renderData = []
-	for (const beach in forecast) {
-		console.log('beach', beach)
-		renderData = beach.map(({ webpages }, index) => {
+	if (Array.isArray(forecast)) {
+		return forecast.map(({ webpages }, index) => {
 			const { windguru, surfForecast } = webpages
 
 			return (
@@ -34,9 +32,7 @@ export default function Table({ forecast }) {
 				</table>
 			)
 		})
+	} else {
+		return <p>Error</p>
 	}
-
-	console.log('renderdata', renderData)
-
-	return renderData
 }
