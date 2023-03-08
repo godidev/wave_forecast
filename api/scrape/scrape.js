@@ -5,10 +5,14 @@ const { getData } = require('./data')
 async function getDataFrom(browser, webPages) {
 	const allData = {}
 	for (const web in webPages) {
-		const { url, selectors } = webPages[web]
-		const page = await loadPageAndWait(browser, url)
-		allData[web] = await evaluateSelectors(selectors, page)
-		await page.close()
+		try {
+			const { url, selectors } = webPages[web]
+			const page = await loadPageAndWait(browser, url)
+			allData[web] = await evaluateSelectors(selectors, page)
+			await page.close()
+		} catch (error) {
+			console.error(error)
+		}
 	}
 	return allData
 }
